@@ -33,8 +33,7 @@ import (
 
 // ServerState holds the state of the Dgraph server.
 type ServerState struct {
-	FinishCh   chan struct{} // channel to wait for all pending reqs to finish.
-	ShutdownCh chan struct{} // channel to signal shutdown.
+	FinishCh chan struct{} // channel to wait for all pending reqs to finish.
 
 	Pstore   *badger.DB
 	WALstore *badger.DB
@@ -51,7 +50,6 @@ func InitServerState() {
 	Config.validate()
 
 	State.FinishCh = make(chan struct{})
-	State.ShutdownCh = make(chan struct{})
 	State.needTs = make(chan tsReq, 100)
 
 	State.initStorage()

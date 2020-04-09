@@ -146,6 +146,11 @@ var (
 	regExpHostName = regexp.MustCompile(ValidHostnameRegex)
 	// Nilbyte is a nil byte slice. Used
 	Nilbyte []byte
+
+	// ShutdownCh is used to signal shutdown of the Alpha server. Whenever a shutdown operation
+	// is performed by the user, the channel is closed and alpha shutsdown the HTTP and gRPC
+	// listeners.
+	ShutdownCh chan struct{}
 )
 
 // ShouldCrash returns true if the error should cause the process to crash.

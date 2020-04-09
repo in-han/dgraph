@@ -22,7 +22,7 @@ import (
 	dgoapi "github.com/dgraph-io/dgo/v200/protos/api"
 	"github.com/dgraph-io/dgraph/gql"
 	"github.com/dgraph-io/dgraph/graphql/schema"
-	"github.com/dgraph-io/dgraph/worker"
+	"github.com/dgraph-io/dgraph/x"
 	"github.com/golang/glog"
 )
 
@@ -35,7 +35,7 @@ func (sr *shutdownResolver) Rewrite(
 	glog.Info("Got shutdown request through GraphQL admin API")
 
 	sr.mutation = m
-	close(worker.ShutdownCh)
+	close(x.ShutdownCh)
 	return nil, nil, nil
 }
 
